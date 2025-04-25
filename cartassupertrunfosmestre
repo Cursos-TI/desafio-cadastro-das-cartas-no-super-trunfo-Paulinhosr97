@@ -1,0 +1,70 @@
+int main() {
+    printf("Desafio Super Trunfo\n\n");
+
+    // Carta 1
+    printf("Carta 1:\n");
+    unsigned long int pop1;
+    float area1, pib1, dens1, ppc1;
+    int pontos1;
+
+    printf("Digite populacao:\n");
+    scanf("%lu", &pop1);
+
+    printf("Digite area:\n");
+    scanf("%f", &area1);
+
+    printf("Digite o PIB:\n");
+    scanf("%f", &pib1);
+
+    printf("Digite pontos turisticos:\n");
+    scanf("%d", &pontos1);
+
+    dens1 = pop1 / area1;
+    ppc1 = pib1 / pop1;
+
+    printf("População: %lu\nÁrea: %.2f\nPIB: %.2f\nPontos Turísticos: %d\n", pop1, area1, pib1, pontos1);
+    printf("Densidade Populacional: %.2f\n", dens1);
+    printf("PIB per Capita: %.6f\n\n", ppc1);
+
+    // Carta 2
+    printf("Carta 2:\n");
+    unsigned long int pop2;
+    float area2, pib2, dens2, ppc2;
+    int pontos2;
+
+    printf("Digite populacao:\n");
+    scanf("%lu", &pop2);
+
+    printf("Digite area:\n");
+    scanf("%f", &area2);
+
+    printf("Digite o PIB:\n");
+    scanf("%f", &pib2);
+
+    printf("Digite pontos turisticos:\n");
+    scanf("%d", &pontos2);
+
+    dens2 = pop2 / area2;
+    ppc2 = pib2 / pop2;
+
+    printf("População: %lu\nÁrea: %.2f\nPIB: %.2f\nPontos Turísticos: %d\n", pop2, area2, pib2, pontos2);
+    printf("Densidade Populacional: %.2f\n", dens2);
+    printf("PIB per Capita: %.6f\n\n", ppc2);
+
+    // Super Poder (soma dos atributos numéricos + 1/densidade)
+    float sp1 = (float)pop1 + area1 + pib1 + pontos1 + ppc1 + (1.0f / dens1);
+    float sp2 = (float)pop2 + area2 + pib2 + pontos2 + ppc2 + (1.0f / dens2);
+
+    // Comparações
+    printf("Comparação de Cartas:\n\n");
+
+    printf("População: Carta 1 venceu (%d)\n", pop1 > pop2);
+    printf("Área: Carta 1 venceu (%d)\n", area1 > area2);
+    printf("PIB: Carta 1 venceu (%d)\n", pib1 > pib2);
+    printf("Pontos Turísticos: Carta 1 venceu (%d)\n", pontos1 > pontos2);
+    printf("Densidade Populacional: Carta 1 venceu (%d)\n", dens1 < dens2); // menor é melhor
+    printf("PIB per Capita: Carta 1 venceu (%d)\n", ppc1 > ppc2);
+    printf("Super Poder: Carta 1 venceu (%d)\n", sp1 > sp2);
+
+    return 0;
+}
