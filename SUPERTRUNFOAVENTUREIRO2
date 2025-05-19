@@ -1,0 +1,121 @@
+#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+    char estado[3];
+    int codCarta;
+    char nome[50];
+    int populacao;
+    float area;
+    float pib;
+    int pontosTuristicos;
+    float densidade;
+    float pibPerCapita;
+} Cidade;
+
+// Função para calcular densidade e PIB per capita
+void calcularDados(Cidade *c) {
+    if (c->area != 0)
+        c->densidade = c->populacao / c->area;
+    else
+        c->densidade = 0;
+
+    if (c->populacao != 0)
+        c->pibPerCapita = c->pib / c->populacao;
+    else
+        c->pibPerCapita = 0;
+}
+
+// Função para comparar dois atributos
+void comparar(Cidade c1, Cidade c2, int opcao) {
+    printf("\nComparando os países: %s x %s\n", c1.nome, c2.nome);
+    
+    switch (opcao) {
+        case 1:
+            printf("Atributo: População\n");
+            printf("%s: %d habitantes\n", c1.nome, c1.populacao);
+            printf("%s: %d habitantes\n", c2.nome, c2.populacao);
+            if (c1.populacao > c2.populacao)
+                printf("Vencedor: %s\n", c1.nome);
+            else if (c2.populacao > c1.populacao)
+                printf("Vencedor: %s\n", c2.nome);
+            else
+                printf("Empate!\n");
+            break;
+
+        case 2:
+            printf("Atributo: Área\n");
+            printf("%s: %.2f km²\n", c1.nome, c1.area);
+            printf("%s: %.2f km²\n", c2.nome, c2.area);
+            if (c1.area > c2.area)
+                printf("Vencedor: %s\n", c1.nome);
+            else if (c2.area > c1.area)
+                printf("Vencedor: %s\n", c2.nome);
+            else
+                printf("Empate!\n");
+            break;
+
+        case 3:
+            printf("Atributo: PIB\n");
+            printf("%s: %.2f\n", c1.nome, c1.pib);
+            printf("%s: %.2f\n", c2.nome, c2.pib);
+            if (c1.pib > c2.pib)
+                printf("Vencedor: %s\n", c1.nome);
+            else if (c2.pib > c1.pib)
+                printf("Vencedor: %s\n", c2.nome);
+            else
+                printf("Empate!\n");
+            break;
+
+        case 4:
+            printf("Atributo: Pontos Turísticos\n");
+            printf("%s: %d\n", c1.nome, c1.pontosTuristicos);
+            printf("%s: %d\n", c2.nome, c2.pontosTuristicos);
+            if (c1.pontosTuristicos > c2.pontosTuristicos)
+                printf("Vencedor: %s\n", c1.nome);
+            else if (c2.pontosTuristicos > c1.pontosTuristicos)
+                printf("Vencedor: %s\n", c2.nome);
+            else
+                printf("Empate!\n");
+            break;
+
+        case 5:
+            printf("Atributo: Densidade Demográfica (MENOR vence)\n");
+            printf("%s: %.2f hab/km²\n", c1.nome, c1.densidade);
+            printf("%s: %.2f hab/km²\n", c2.nome, c2.densidade);
+            if (c1.densidade < c2.densidade)
+                printf("Vencedor: %s\n", c1.nome);
+            else if (c2.densidade < c1.densidade)
+                printf("Vencedor: %s\n", c2.nome);
+            else
+                printf("Empate!\n");
+            break;
+
+        default:
+            printf("Opção inválida. Por favor, selecione um número de 1 a 5.\n");
+            break;
+    }
+}
+
+int main() {
+    Cidade cidade1 = {"SP", 101, "São Paulo", 12300000, 1521.11, 700000.00, 15};
+    Cidade cidade2 = {"RJ", 202, "Rio de Janeiro", 6700000, 1182.30, 500000.00, 20};
+
+    calcularDados(&cidade1);
+    calcularDados(&cidade2);
+
+    int escolha;
+
+    printf("\n--- MENU DE COMPARAÇÃO ---\n");
+    printf("1. População\n");
+    printf("2. Área\n");
+    printf("3. PIB\n");
+    printf("4. Pontos Turísticos\n");
+    printf("5. Densidade Demográfica (menor vence)\n");
+    printf("Escolha um atributo para comparar (1-5): ");
+    scanf("%d", &escolha);
+
+    comparar(cidade1, cidade2, escolha);
+
+    return 0;
+}
